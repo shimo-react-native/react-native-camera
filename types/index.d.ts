@@ -73,7 +73,7 @@ export interface RNCameraProps {
     pendingAuthorizationView?: JSX.Element;
     useCamera2Api?: boolean;
     whiteBalance?: keyof WhiteBalance
-    
+
     onCameraReady?(): void;
     onMountError?(error: {
         message: string
@@ -118,12 +118,13 @@ export interface RNCameraProps {
     permissionDialogMessage?: string;
     /** Android only */
     playSoundOnCapture?: boolean;
+    /** Android only */
+    cropRect?: any
 
     // -- IOS ONLY PROPS
 
     /** iOS Only */
     captureAudio?: boolean;
-    defaultVideoQuality?: keyof VideoQuality;
 }
 
 interface Point<T = number> {

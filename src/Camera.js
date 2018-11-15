@@ -126,6 +126,7 @@ export default class Camera extends Component {
     permissionDialogMessage: PropTypes.string,
     notAuthorizedView: PropTypes.element,
     pendingAuthorizationView: PropTypes.element,
+    cropRect: PropTypes.object
   };
 
   static defaultProps = {

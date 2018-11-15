@@ -2,6 +2,7 @@ package org.reactnative.camera;
 
 import android.support.annotation.Nullable;
 import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.common.MapBuilder;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.ViewGroupManager;
@@ -122,6 +123,11 @@ public class CameraViewManager extends ViewGroupManager<RNCameraView> {
   @ReactProp(name = "barCodeScannerEnabled")
   public void setBarCodeScanning(RNCameraView view, boolean barCodeScannerEnabled) {
     view.setShouldScanBarCodes(barCodeScannerEnabled);
+  }
+
+  @ReactProp(name = "cropRect")
+  public void setCropRect(RNCameraView view, ReadableMap map) {
+    view.setCropRect(CropRect.fromReadableMap(view.getResources().getDisplayMetrics(),map));
   }
 
   @ReactProp(name = "useCamera2Api")
