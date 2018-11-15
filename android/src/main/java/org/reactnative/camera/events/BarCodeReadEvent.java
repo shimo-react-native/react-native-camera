@@ -70,27 +70,26 @@ public class BarCodeReadEvent extends Event<BarCodeReadEvent> {
     event.putInt("target", getViewTag());
     event.putString("data", mBarCode.getText());
 
-    WritableArray resultPoints = null;
-    try {
+    byte[] rawBytes = mBarCode.getRawBytes();
+    if (rawBytes != null && rawBytes.length > 0) {
       Formatter formatter = new Formatter();
-      for (byte b : mBarCode.getRawBytes()) {
+      for (byte b : rawBytes) {
         formatter.format("%02x", b);
       }
       event.putString("rawData", formatter.toString());
       formatter.close();
+    } 
 
-      event.putString("type", mBarCode.getBarcodeFormat().toString());
-      resultPoints = Arguments.createArray();
-      ResultPoint[] points = mBarCode.getResultPoints();
-      for (ResultPoint point: points) {
-        if(point!=null) {
-          WritableMap newPoint = Arguments.createMap();
-          newPoint.putString("x", String.valueOf(point.getX()));
-          newPoint.putString("y", String.valueOf(point.getY()));
-          resultPoints.pushMap(newPoint);
-        }
+    event.putString("type", mBarCode.getBarcodeFormat().toString());
+    WritableArray resultPoints = Arguments.createArray();
+    ResultPoint[] points = mBarCode.getResultPoints();
+    for (ResultPoint point: points) {
+      if(point!=null) {
+        WritableMap newPoint = Arguments.createMap();
+        newPoint.putString("x", String.valueOf(point.getX()));
+        newPoint.putString("y", String.valueOf(point.getY()));
+        resultPoints.pushMap(newPoint);
       }
-    } catch (Exception ignore) {
     }
 
     eventOrigin.putArray("origin", resultPoints);
