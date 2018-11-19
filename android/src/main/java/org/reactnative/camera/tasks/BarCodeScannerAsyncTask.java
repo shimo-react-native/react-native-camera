@@ -110,6 +110,12 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
             }
         }
 
+        if( left + dstWidth > width || top + dstHeight > height){
+            left = top = 0;
+            dstHeight = height;
+            dstWidth = width;
+        }
+
         PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(
             imageData, // byte[] yuvData
             width, // int dataWidth
