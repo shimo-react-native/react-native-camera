@@ -8,6 +8,7 @@ import android.media.CamcorderProfile;
 import android.media.MediaActionSound;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
+import android.util.DisplayMetrics;
 import android.util.SparseArray;
 import android.view.View;
 import android.os.AsyncTask;
@@ -15,6 +16,7 @@ import android.os.AsyncTask;
 import com.facebook.react.bridge.*;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.google.android.cameraview.CameraView;
+import com.google.android.cameraview.Size;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.text.TextBlock;
@@ -72,11 +74,13 @@ public class RNCameraView extends CameraView
     private int mGoogleVisionBarCodeType = Barcode.ALL_FORMATS;
     private int mGoogleVisionBarCodeMode = RNBarcodeDetector.NORMAL_MODE;
     private CropRect mCropRect;
+    private DisplayMetrics mDisplayMetrics;
 
     public RNCameraView(ThemedReactContext themedReactContext) {
         super(themedReactContext, true);
         mThemedReactContext = themedReactContext;
         themedReactContext.addLifecycleEventListener(this);
+        mDisplayMetrics = getResources().getDisplayMetrics();
 
         addCallback(new Callback() {
             @Override
@@ -142,14 +146,20 @@ public class RNCameraView extends CameraView
                     return;
                 }
 
-                if(mCropRect != null){
-                    mCropRect.rotation = correctRotation;
+                if (mCropRect != null) {
+                    mCropRect.rotation = rotation;
+                    if (!mCropRect.hasFixed()) {
+                        float aspect = getPreviewDisplayAspect(cameraView.getPreviewSize(), rotation);
+                        if (aspect != 1.0f) {
+                            mCropRect.fix(aspect);
+                        }
+                    }
                 }
 
                 if (willCallBarCodeTask) {
                     barCodeScannerTaskLock = true;
                     BarCodeScannerAsyncTaskDelegate delegate = (BarCodeScannerAsyncTaskDelegate) cameraView;
-                    new BarCodeScannerAsyncTask(delegate, mMultiFormatReader, data, width, height,mCropRect).execute();
+                    new BarCodeScannerAsyncTask(delegate, mMultiFormatReader, data, width, height, mCropRect).execute();
                 }
 
                 if (willCallFaceTask) {
@@ -185,6 +195,15 @@ public class RNCameraView extends CameraView
                 }
             }
         });
+    }
+
+    private float getPreviewDisplayAspect(Size previewSize, int rotation) {
+        boolean isPortrait = RNCameraViewHelper.isPortrait(rotation);
+        if (isPortrait) {
+            return previewSize.getWidth() * 1.0f / mDisplayMetrics.widthPixels;
+        } else {
+            return previewSize.getHeight() * 1.0f / mDisplayMetrics.widthPixels;
+        }
     }
 
     @Override

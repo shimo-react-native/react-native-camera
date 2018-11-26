@@ -15,6 +15,7 @@ public class CropRect {
     public int width;
     public int height;
     public int rotation;
+    private boolean hasFixed = false;
 
     public static CropRect fromReadableMap(DisplayMetrics metrics, ReadableMap map) {
         CropRect cropRect = new CropRect();
@@ -24,11 +25,11 @@ public class CropRect {
             int left = map.getInt("left");
             if (left == -1) {
                 cropRect.left = (screenWidth - cropRect.width) / 2;
-            }else {
-                cropRect.left = dip2px(metrics,left);
+            } else {
+                cropRect.left = dip2px(metrics, left);
             }
-            cropRect.top = dip2px(metrics,map.getInt("top"));
-            cropRect.height = dip2px(metrics,map.getInt("height"));
+            cropRect.top = dip2px(metrics, map.getInt("top"));
+            cropRect.height = dip2px(metrics, map.getInt("height"));
         }
         return cropRect;
     }
@@ -36,5 +37,21 @@ public class CropRect {
     private static int dip2px(DisplayMetrics metrics, float dpValue) {
         float scale = metrics.density;
         return (int) (dpValue * scale + 0.5f);
+    }
+
+    /**
+     * 修复用户手动更改系统分辨率，导致的previewSize和ScreenSize不一致问题
+     * @param aspect
+     */
+    public void fix(float aspect) {
+        hasFixed = true;
+        left *= aspect;
+        top *= aspect;
+        width *= aspect;
+        height *= aspect;
+    }
+
+    public boolean hasFixed() {
+        return hasFixed;
     }
 }

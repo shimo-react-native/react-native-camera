@@ -9,6 +9,7 @@ import com.google.zxing.common.GlobalHistogramBinarizer;
 import com.google.zxing.common.HybridBinarizer;
 
 import org.reactnative.camera.CropRect;
+import org.reactnative.camera.RNCameraViewHelper;
 
 public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Result> {
     private final CropRect mCropRect;
@@ -97,23 +98,17 @@ public class BarCodeScannerAsyncTask extends android.os.AsyncTask<Void, Void, Re
             dstWidth = width;
             dstHeight = height;
         } else {
-            if (mCropRect.rotation == 90) {
-                left = mCropRect.top;
-                top = mCropRect.left;
-                dstWidth = mCropRect.height;
-                dstHeight = mCropRect.width;
-            } else {
+            if (RNCameraViewHelper.isPortrait(mCropRect.rotation)) {
                 left = mCropRect.left;
                 top = mCropRect.top;
                 dstWidth = mCropRect.width;
                 dstHeight = mCropRect.height;
+            } else {
+                left = mCropRect.top;
+                top = mCropRect.left;
+                dstWidth = mCropRect.height;
+                dstHeight = mCropRect.width;
             }
-        }
-
-        if( left + dstWidth > width || top + dstHeight > height){
-            left = top = 0;
-            dstHeight = height;
-            dstWidth = width;
         }
 
         PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(
