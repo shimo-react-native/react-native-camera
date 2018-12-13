@@ -1,16 +1,18 @@
 //
-//  RNFaceDetectorStub.h
-//  RCTCamera
+//  RNFaceDetectorManagerProtocol.h
+//  RNCamera
 //
-//  Created by Joao Guilherme Daros Fidelis on 24/01/18.
+//  Created by lisong on 2018/12/13.
 //
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-#import "RNFaceDetectorManagerProtocol.h"
+@protocol RNFaceDetectorDelegate
+- (void)onFacesDetected:(NSArray<NSDictionary *> *)faces;
+@end
 
-@interface RNFaceDetectorManagerStub : NSObject<RNFaceDetectorManagerProtocol>
+@protocol RNFaceDetectorManagerProtocol <NSObject>
 
 - (NSDictionary *)constantsToExport;
 + (NSDictionary *)constants;

@@ -14,12 +14,10 @@
 #endif
 
 
-@protocol RNFaceDetectorDelegate
-- (void)onFacesDetected:(NSArray<NSDictionary *> *)faces;
-@end
+#import "RNFaceDetectorManagerProtocol.h"
 
 #if __has_include(<GoogleMobileVision/GoogleMobileVision.h>)
-@interface RNFaceDetectorManager : NSObject
+@interface RNFaceDetectorManager : NSObject<RNFaceDetectorManagerProtocol>
 
 - (NSDictionary *)constantsToExport;
 + (NSDictionary *)constants;

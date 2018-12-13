@@ -7,6 +7,10 @@
 #import <React/RCTUtils.h>
 #import <React/UIView+React.h>
 #import  "RNSensorOrientationChecker.h"
+
+#import "TextDetectorManagerProtocol.h"
+#import "RNFaceDetectorManagerProtocol.h"
+
 @interface RNCamera ()
 
 @property (nonatomic, weak) RCTBridge *bridge;
@@ -15,8 +19,8 @@
 
 @property (nonatomic, strong) RCTPromiseResolveBlock videoRecordedResolve;
 @property (nonatomic, strong) RCTPromiseRejectBlock videoRecordedReject;
-@property (nonatomic, strong) id faceDetectorManager;
-@property (nonatomic, strong) id textDetector;
+@property (nonatomic, strong) id<RNFaceDetectorManagerProtocol> faceDetectorManager;
+@property (nonatomic, strong) id<TextDetectorManagerProtocol> textDetector;
 
 @property (nonatomic, copy) RCTDirectEventBlock onCameraReady;
 @property (nonatomic, copy) RCTDirectEventBlock onMountError;

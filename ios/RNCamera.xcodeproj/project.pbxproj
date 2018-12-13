@@ -22,6 +22,8 @@
 		71D5C72A201B8A2F0030A15E /* RNFaceDetectorPointTransformCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7147DBB8201553EE003C59C3 /* RNFaceDetectorPointTransformCalculator.m */; };
 		71D5C72B201B8A320030A15E /* RNFaceDetectorModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7147DBB520155340003C59C3 /* RNFaceDetectorModule.m */; };
 		71D5C72C201B8A360030A15E /* RNFaceDetectorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7147DBB22015319E003C59C3 /* RNFaceDetectorManager.m */; };
+		995DDA9221C25C1A00831C5C /* TextDetectorManagerStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 995DDA9121C25C1900831C5C /* TextDetectorManagerStub.m */; };
+		995DDA9621C25C2600831C5C /* TextDetectorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 995DDA9521C25C2600831C5C /* TextDetectorManager.m */; };
 		9FE592B31CA3CBF500788287 /* RCTSensorOrientationChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE592B21CA3CBF500788287 /* RCTSensorOrientationChecker.m */; };
 		F8393BEC21469C0000AB1995 /* RNSensorOrientationChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = F8393BEB21469C0000AB1995 /* RNSensorOrientationChecker.m */; };
 /* End PBXBuildFile section */
@@ -69,6 +71,12 @@
 		71C7FFD22013C817006EB75A /* RNImageUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNImageUtils.m; sourceTree = "<group>"; };
 		71C7FFD42013C824006EB75A /* RNFileSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNFileSystem.h; sourceTree = "<group>"; };
 		71C7FFD52013C824006EB75A /* RNFileSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNFileSystem.m; sourceTree = "<group>"; };
+		995DDA8E21C25AAE00831C5C /* TextDetectorManagerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextDetectorManagerProtocol.h; sourceTree = "<group>"; };
+		995DDA8F21C25AC700831C5C /* RNFaceDetectorManagerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNFaceDetectorManagerProtocol.h; sourceTree = "<group>"; };
+		995DDA9021C25C1900831C5C /* TextDetectorManagerStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextDetectorManagerStub.h; sourceTree = "<group>"; };
+		995DDA9121C25C1900831C5C /* TextDetectorManagerStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextDetectorManagerStub.m; sourceTree = "<group>"; };
+		995DDA9421C25C2600831C5C /* TextDetectorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextDetectorManager.h; sourceTree = "<group>"; };
+		995DDA9521C25C2600831C5C /* TextDetectorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextDetectorManager.m; sourceTree = "<group>"; };
 		9FE592B11CA3CBF500788287 /* RCTSensorOrientationChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTSensorOrientationChecker.h; sourceTree = "<group>"; };
 		9FE592B21CA3CBF500788287 /* RCTSensorOrientationChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTSensorOrientationChecker.m; sourceTree = "<group>"; };
 		F8393BEA21469C0000AB1995 /* RNSensorOrientationChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNSensorOrientationChecker.h; sourceTree = "<group>"; };
@@ -89,6 +97,8 @@
 		410701241ACB719800C6AA39 = {
 			isa = PBXGroup;
 			children = (
+				995DDA9321C25C2600831C5C /* TextDetector */,
+				995DDA8D21C259C400831C5C /* Protocol */,
 				7147DBB02015317E003C59C3 /* FaceDetector */,
 				714166162013E1B600EE9FCC /* RN */,
 				714166152013E19D00EE9FCC /* RCT */,
@@ -123,6 +133,8 @@
 		714166162013E1B600EE9FCC /* RN */ = {
 			isa = PBXGroup;
 			children = (
+				995DDA9021C25C1900831C5C /* TextDetectorManagerStub.h */,
+				995DDA9121C25C1900831C5C /* TextDetectorManagerStub.m */,
 				F8393BEA21469C0000AB1995 /* RNSensorOrientationChecker.h */,
 				F8393BEB21469C0000AB1995 /* RNSensorOrientationChecker.m */,
 				71C7FFD42013C824006EB75A /* RNFileSystem.h */,
@@ -156,6 +168,24 @@
 				7147DBBE20155694003C59C3 /* RNFaceEncoder.m */,
 			);
 			path = FaceDetector;
+			sourceTree = "<group>";
+		};
+		995DDA8D21C259C400831C5C /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				995DDA8E21C25AAE00831C5C /* TextDetectorManagerProtocol.h */,
+				995DDA8F21C25AC700831C5C /* RNFaceDetectorManagerProtocol.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		995DDA9321C25C2600831C5C /* TextDetector */ = {
+			isa = PBXGroup;
+			children = (
+				995DDA9421C25C2600831C5C /* TextDetectorManager.h */,
+				995DDA9521C25C2600831C5C /* TextDetectorManager.m */,
+			);
+			path = TextDetector;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +245,7 @@
 			files = (
 				0314E39D1B661A460092D183 /* CameraFocusSquare.m in Sources */,
 				71D5C728201B8A2A0030A15E /* RNFaceEncoder.m in Sources */,
+				995DDA9221C25C1A00831C5C /* TextDetectorManagerStub.m in Sources */,
 				454EBCF41B5082DC00AD0F86 /* NSMutableDictionary+ImageMetadata.m in Sources */,
 				71C7FFD62013C824006EB75A /* RNFileSystem.m in Sources */,
 				71D5C729201B8A2D0030A15E /* RNFaceDetectorUtils.m in Sources */,
@@ -222,6 +253,7 @@
 				71D5C72C201B8A360030A15E /* RNFaceDetectorManager.m in Sources */,
 				7103647B20195C53009691D1 /* RNFaceDetectorManagerStub.m in Sources */,
 				4107014D1ACB732B00C6AA39 /* RCTCamera.m in Sources */,
+				995DDA9621C25C2600831C5C /* TextDetectorManager.m in Sources */,
 				71D5C72A201B8A2F0030A15E /* RNFaceDetectorPointTransformCalculator.m in Sources */,
 				F8393BEC21469C0000AB1995 /* RNSensorOrientationChecker.m in Sources */,
 				71C7FFD02013C7E5006EB75A /* RNCameraUtils.m in Sources */,

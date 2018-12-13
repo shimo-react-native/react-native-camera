@@ -1,7 +1,9 @@
 #if __has_include(<GoogleMobileVision/GoogleMobileVision.h>)
 #import <GoogleMobileVision/GoogleMobileVision.h>
 
-@interface TextDetectorManager : NSObject
+#import "TextDetectorManagerProtocol.h"
+
+@interface TextDetectorManager : NSObject<TextDetectorManagerProtocol>
 
 - (instancetype)init;
 

@@ -1,4 +1,7 @@
-@interface TextDetectorManager : NSObject
+
+#import "TextDetectorManagerProtocol.h"
+
+@interface TextDetectorManager : NSObject<TextDetectorManagerProtocol>
 
 - (instancetype)init;
 
